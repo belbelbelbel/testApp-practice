@@ -10,37 +10,23 @@ export const FormTest = () => {
             flex: 1,
             backgroundColor: 'transparent',
             padding: 20,
-            borderRadius: 10,
-            shadowColor: '#333',
-            shadowOpacity: 0.2,
-            shadowRadius: 10,
-            shadowOffset: { width: 0, height: 2 },
-            elevation: 5,
+            // elevation: 5,
             justifyContent: "center",
             alignItems: "center",
         },
         form: {
-            ...Platform.select({
-                ios: {
                     marginBottom: 20,
                     width: 350,
-                    height: 500,
-
+                    height: 320,
                     shadowColor: '#333',
                     justifyContent: 'center',
-                    alignItem: 'center',
                     shadowOpacity: 0.2,
                     shadowRadius: 10,
                     shadowOffset: { width: 0, height: 2 },
                     backgroundColor: '#fff',
                     borderRadius: 10,
-                    padding: 20
-
-                },
-                android: {
-                    elevation: 5,
-                }
-            })
+                    padding: 20,
+                    elevation: 5
         },
         input: {
             borderWidth: 1,
@@ -61,9 +47,9 @@ export const FormTest = () => {
         <KeyboardAvoidingView  keyboardVerticalOffset={Platform.OS === "ios" ? 130 : 0} behavior='padding' style={style.container}>
 
                 <View style={style.form} >
-                    <View>
+                    {/* <View>
                         <Image source={FormloGo} style={style.image} />
-                    </View>
+                    </View> */}
                     <View>
                         <Text style={{ fontWeight: "bold", marginBottom: 6 }}>Username</Text>
                         <TextInput value={name} onChangeText={setName} placeholder='name' style={style.input} />
@@ -72,7 +58,7 @@ export const FormTest = () => {
                         <Text style={{ fontWeight: "bold", marginBottom: 6 }}>Password</Text>
                         <TextInput placeholder='Password' secureTextEntry value={password} onChangeText={setPassword} style={style.input} />
                     </View>
-                    <Button title='Login'></Button>
+                    <Button title='Send Message'></Button>
                 </View>
         </KeyboardAvoidingView>
     )

@@ -90,7 +90,7 @@ export default function index() {
     }
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: Color.primary }}>
-            <StatusBar />
+            <StatusBar style='light'/>
             <View style={{ width: width, marginHorizontal: "auto" }}>
                 <FlatList ref={ref} data={ImageArray} onMomentumScrollEnd={updatedSlidEvent} horizontal pagingEnabled renderItem={({ item, index }) => (
                     <View>
@@ -108,7 +108,7 @@ export default function index() {
             <View style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: 'center', gap: 50 }}>
                 {
                    currentPage === ImageArray.length - 1 ? (
-                        <TouchableOpacity style={styles.button3} onPress={()=>router.push('/login')}>
+                        <TouchableOpacity style={styles.button3} onPress={()=>router.push('/Authcontainer')}>
                             <Text style={styles.text3}>Get Started</Text>
                         </TouchableOpacity>
                     ) : (

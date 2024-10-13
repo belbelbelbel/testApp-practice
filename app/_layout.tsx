@@ -9,10 +9,14 @@ export default function RootLayout() {
              <Stack.Screen name="(tabs)" options={{
                 headerShown: false
             }} />
-            <Stack.Screen name="login" options={{
+            <Stack.Screen name="Authcontainer" options={{
                 headerShown:false
             }}></Stack.Screen>
-            {/* <Stack.Screen name=""></Stack.Screen> */}
+            <Stack.Screen name="login" options={
+                {
+                    headerShown:false
+                }
+            }></Stack.Screen>
             {/* <Stack.Screen name="about"/> */}
         </Stack>
     )

@@ -1,39 +1,41 @@
-import { View, Text, SafeAreaView, Image, TextInput, StyleSheet, useWindowDimensions, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
+import { useRouter } from 'expo-router'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
+import RadioComponent from '@/components/RadioComponent'
 
-export default function LoginPage() {
-    const { width } = useWindowDimensions()
-    const style = StyleSheet.create({
-        input: {
-            borderWidth: 1,
-            height: 50,
-            width: '100%',
-            borderColor: "white",
-            marginBottom: 20,
-            // paddingHorizontal: 10,
-            marginHorizontal: "auto",
-            borderRadius: 5,
-        },
-    })
-    const [name, setName] = useState('');
+export default function Login() {
+    const router = useRouter()
+    const [SelectedRadio, setSelectedRadio] = useState('')
+    const GotoNextPage = () => {
+        if(SelectedRadio === 'option1') {
+            router.push('/CustomerPhonenumber')
+        }
+        else{
+            router.push('/ServiceReg')
+        }
+    }
+
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: 'black', }}>
             <StatusBar style='light' />
-            <View style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: width, flex: 1 }}>
-                <View>
-                    <Image source={(require('../assets/images/Laundry2.png'))} />
-                    <Image source={(require('../assets/images/Laundry1.png'))} />
+            <View style={{display:"flex",justifyContent:"space-between",flex:1, width: '85%', marginHorizontal: 'auto'}}>
+                <View style={{ display: 'flex', gap: 26 }}>
+                    <Text style={{ color: 'white' }} onPress={() => router.back()}>
+                        <MaterialCommunityIcons name='arrow-left' color={'white'} size={30} />
+                    </Text>
+                    <Text style={{ color: 'white', fontSize: 28 }}>Select Account type</Text>
+                    <RadioComponent label='Customer' onSelect={() => setSelectedRadio('option1')} select={SelectedRadio === 'option1'} />
+                    <RadioComponent label='Service Partner' onSelect={() => setSelectedRadio('option2')} select={SelectedRadio === 'option2'} />
                 </View>
-                <View style={{ width: '80%', display: "flex", gap: 15}}>
-                    <TouchableOpacity style={{ width: '100%', backgroundColor: "white", height: 50, borderRadius: 7,  alignItems: "center", justifyContent: 'center',display:'flex' }}>
-                        <Text style={{fontWeight: "800", fontSize: 15, color: "#2D70BC"}}>Login</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{ width: '100%', backgroundColor: "#2D70BC", height: 50, borderRadius: 7,  alignItems: "center", justifyContent: 'center',display:'flex' }}>
-                        <Text style={{fontWeight: "800", fontSize: 15, color: "white"}}>Create Account</Text>
+                <View style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+                    <TouchableOpacity disabled={SelectedRadio === ''} style={{backgroundColor:SelectedRadio === '' ? 'grey' : '#007BFF',width:'97%',display:'flex',alignItems:'center',justifyContent:'center',height:50,borderRadius:10}} onPress={() => GotoNextPage()}>
+                        <Text style={{ color: 'white', fontSize: 18,fontWeight:'700'}}>Continue</Text>
                     </TouchableOpacity>
                 </View>
             </View>
+
         </SafeAreaView>
     )
 }
